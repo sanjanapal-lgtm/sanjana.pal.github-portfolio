@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanjana Pal — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #0b0b0b; --ink-2: #121009;
+    --paper: #f5f2ed; --paper-dark: #ede9e1;
+    --gold: #b8935a; --gold-light: #d4ab72;
+    --white: #ffffff; --text-muted: #6b6560;
+    --bd-light: rgba(11,11,11,0.12); --bd-dark: rgba(255,255,255,0.09);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Syne', sans-serif; background: var(--ink); color: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 4rem;
+    background: rgba(11,11,11,0.88); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--bd-dark);
+  }
+  .nav-logo { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 9rem 3rem 6rem 4rem; background: var(--ink);
+  }
+  .hero-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; opacity:0; transform:translateY(20px); animation: fu 0.8s 0.2s forwards; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem,5vw,5.2rem); font-weight: 300; line-height: 1.05; opacity:0; transform:translateY(30px); animation: fu 0.9s 0.4s forwards; }
+  .hero-title em { font-style: italic; color: var(--gold-light); }
+  .hero-sub { margin-top: 2rem; font-size: 0.9rem; line-height: 1.85; color: rgba(255,255,255,0.58); max-width: 430px; opacity:0; transform:translateY(20px); animation: fu 0.9s 0.6s forwards; }
+  .hero-tagline { margin-top: 1.5rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); opacity:0; transform:translateY(20px); animation: fu 0.9s 0.72s forwards; }
+  .hero-ctas { display: flex; gap: 1rem; margin-top: 3rem; opacity:0; transform:translateY(20px); animation: fu 0.9s 0.85s forwards; }
+
+  .hero-right { background: var(--ink-2); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .hero-right::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg,transparent,transparent 50px,rgba(184,147,90,0.022) 50px,rgba(184,147,90,0.022) 51px); }
+  .hero-mono { font-family: 'Cormorant Garamond', serif; font-size: clamp(12rem,20vw,18rem); font-weight: 300; color: rgba(184,147,90,0.07); user-select: none; pointer-events: none; letter-spacing: -0.05em; opacity:0; animation: fi 2s 0.5s forwards; }
+  .hero-loc { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.28); position: absolute; bottom: 3rem; left: 3rem; opacity:0; animation: fi 1s 1.4s forwards; }
+  .hero-badge { position: absolute; top: 8rem; right: 3rem; background: var(--gold); color: var(--ink); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.5rem 1rem; opacity:0; animation: fi 1s 1.6s forwards; }
+
+  /* BUTTONS */
+  .btn-p { display:inline-block; padding:.85rem 2rem; background:var(--gold); color:var(--ink); font-family:'Syne',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; text-decoration:none; transition:background .25s,transform .2s; }
+  .btn-p:hover { background:var(--gold-light); transform:translateY(-2px); }
+  .btn-g { display:inline-block; padding:.85rem 2rem; border:1px solid rgba(255,255,255,.25); color:var(--white); font-family:'Syne',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; text-decoration:none; transition:border-color .25s,color .25s,transform .2s; }
+  .btn-g:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
+  .btn-pd { display:inline-block; padding:.85rem 2rem; background:var(--gold); color:var(--ink); font-family:'Syne',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; text-decoration:none; transition:background .25s,transform .2s; }
+  .btn-pd:hover { background:var(--gold-light); transform:translateY(-2px); }
+  .btn-gd { display:inline-block; padding:.85rem 2rem; border:1px solid rgba(11,11,11,.3); color:var(--ink); font-family:'Syne',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; text-decoration:none; transition:border-color .25s,color .25s,transform .2s; }
+  .btn-gd:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
+
+  /* STATS */
+  .stats { background:var(--paper); display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--bd-light); }
+  .stat { padding:3rem 2.5rem; border-right:1px solid var(--bd-light); color:var(--ink); opacity:0; transform:translateY(20px); transition:opacity .6s,transform .6s; }
+  .stat:last-child { border-right:none; }
+  .stat.vis { opacity:1; transform:translateY(0); }
+  .stat-n { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:600; line-height:1; letter-spacing:-.02em; color:var(--ink); }
+  .stat-n span { color:var(--gold); }
+  .stat-l { font-size:.72rem; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:var(--text-muted); margin-top:.6rem; line-height:1.5; }
+
+  /* SECTION HEADER */
+  .sh { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:4rem; padding-bottom:2rem; border-bottom:1px solid var(--bd-dark); opacity:0; transform:translateY(20px); transition:opacity .7s,transform .7s; }
+  .sh.lt { border-bottom-color:var(--bd-light); }
+  .sh.vis { opacity:1; transform:translateY(0); }
+  .sh-label { font-size:.72rem; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:.5rem; }
+  .sh-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:300; color:var(--white); line-height:1.1; }
+  .sh-title.dk { color:var(--ink); }
+  .sh-title em { font-style:italic; }
+  .sh-meta { font-family:'Cormorant Garamond',serif; font-size:.85rem; color:rgba(255,255,255,.25); }
+  .sh-meta.dk { color:rgba(11,11,11,.3); }
+
+  /* EXPERTISE */
+  .expertise { background:var(--ink); padding:8rem 4rem; }
+  .exp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,.07); }
+  .exp-card { background:var(--ink); padding:3rem 2.5rem; opacity:0; transform:translateY(30px); transition:opacity .7s,transform .7s,background .3s; }
+  .exp-card:hover { background:#161410; }
+  .exp-card.vis { opacity:1; transform:translateY(0); }
+  .exp-card:nth-child(2) { transition-delay:.12s; }
+  .exp-card:nth-child(3) { transition-delay:.24s; }
+  .ec-num { font-family:'Cormorant Garamond',serif; font-size:.85rem; color:var(--gold); font-weight:600; letter-spacing:.1em; margin-bottom:2rem; }
+  .ec-title { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:400; line-height:1.2; color:var(--white); margin-bottom:1.2rem; }
+  .ec-body { font-size:.87rem; line-height:1.85; color:rgba(255,255,255,.52); }
+  .ec-rule { margin-top:1.8rem; padding-top:1.2rem; border-top:1px solid rgba(184,147,90,.25); font-size:.68rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); }
+
+  /* PROJECT */
+  .project { background:var(--paper); padding:8rem 4rem; }
+  .proj-inner { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; opacity:0; transform:translateY(30px); transition:opacity .8s,transform .8s; }
+  .proj-inner.vis { opacity:1; transform:translateY(0); }
+  .proj-tag { display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; background:var(--ink); color:var(--gold); padding:.45rem 1rem; margin-bottom:1.5rem; }
+  .proj-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3vw,2.8rem); font-weight:400; line-height:1.1; color:var(--ink); margin-bottom:1.5rem; }
+  .proj-overview { font-size:.9rem; line-height:1.9; color:var(--text-muted); }
+  .proj-overview p+p { margin-top:1rem; }
+  .proj-quote { border-left:3px solid var(--gold); padding-left:1.2rem; margin-top:2rem; font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; line-height:1.7; color:var(--ink); }
+  .proj-imgs { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2.5rem; }
+  .proj-img-ph { aspect-ratio:4/3; background:#e8e4dc; display:flex; align-items:center; justify-content:center; font-size:.68rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:rgba(11,11,11,.22); border:1px dashed rgba(11,11,11,.15); }
+  .deliv-label { font-size:.72rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; }
+  .deliverables { list-style:none; }
+  .deliv { display:grid; grid-template-columns:2.5rem 1fr; gap:1rem; align-items:start; padding:1.4rem 0; border-bottom:1px solid var(--bd-light); }
+  .deliv:first-child { border-top:1px solid var(--bd-light); }
+  .deliv-num { font-family:'Cormorant Garamond',serif; font-size:.9rem; font-weight:600; color:var(--gold); padding-top:.1rem; }
+  .deliv-t { font-size:.87rem; font-weight:700; color:var(--ink); margin-bottom:.3rem; }
+  .deliv-b { font-size:.82rem; line-height:1.7; color:var(--text-muted); }
+
+  /* ABOUT */
+  .about { background:var(--ink); padding:8rem 4rem; }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; }
+  .about-l { opacity:0; transform:translateX(-30px); transition:opacity .8s,transform .8s; }
+  .about-l.vis { opacity:1; transform:translateX(0); }
+  .about-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; }
+  .gold-line { width:3rem; height:1px; background:var(--gold); margin-bottom:2rem; }
+  .about-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,3.5vw,3rem); font-weight:300; color:var(--white); line-height:1.1; margin-bottom:2rem; }
+  .about-title em { font-style:italic; color:var(--gold-light); }
+  .about-body { font-size:.9rem; line-height:1.9; color:rgba(255,255,255,.55); }
+  .about-body p+p { margin-top:1.2rem; }
+  .tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2.5rem; }
+  .tag { font-size:.68rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; border:1px solid rgba(255,255,255,.18); color:rgba(255,255,255,.55); padding:.4rem .9rem; transition:border-color .2s,color .2s; cursor:default; }
+  .tag:hover { border-color:var(--gold); color:var(--gold); }
+  .about-r { opacity:0; transform:translateX(30px); transition:opacity .8s .2s,transform .8s .2s; }
+  .about-r.vis { opacity:1; transform:translateX(0); }
+  .tl-heading { font-size:.72rem; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:2rem; }
+  .tl { list-style:none; }
+  .tl-item { display:grid; grid-template-columns:90px 1fr; gap:1.5rem; padding:1.5rem 0; border-bottom:1px solid var(--bd-dark); }
+  .tl-item:first-child { border-top:1px solid var(--bd-dark); }
+  .tl-year { font-size:.72rem; font-weight:700; color:var(--gold); letter-spacing:.1em; padding-top:.2rem; }
+  .tl-role { font-size:.95rem; font-weight:500; color:var(--white); line-height:1.3; }
+  .tl-place { font-size:.8rem; color:rgba(255,255,255,.38); margin-top:.3rem; }
+
+  /* CTA */
+  .cta { background:var(--paper); padding:8rem 4rem; text-align:center; position:relative; overflow:hidden; }
+  .cta::before { content:'SP'; font-family:'Cormorant Garamond',serif; font-size:30vw; font-weight:300; color:rgba(184,147,90,.055); position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; user-select:none; white-space:nowrap; }
+  .cta-inner { position:relative; z-index:2; opacity:0; transform:translateY(30px); transition:opacity .8s,transform .8s; }
+  .cta-inner.vis { opacity:1; transform:translateY(0); }
+  .cta-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; }
+  .cta-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,5vw,5rem); font-weight:300; line-height:1.1; color:var(--ink); margin-bottom:1rem; }
+  .cta-title em { font-style:italic; color:var(--gold); }
+  .cta-sub { font-size:.87rem; color:var(--text-muted); margin-bottom:3rem; max-width:480px; margin-left:auto; margin-right:auto; line-height:1.7; }
+  .cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+  /* FOOTER */
+  footer { background:#060504; display:flex; justify-content:space-between; align-items:center; padding:2rem 4rem; border-top:1px solid rgba(255,255,255,.05); flex-wrap:wrap; gap:1rem; }
+  footer p { font-size:.72rem; font-weight:500; letter-spacing:.1em; color:rgba(255,255,255,.22); text-transform:uppercase; }
+  .foot-links { display:flex; gap:2rem; }
+  .foot-links a { font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.32); text-decoration:none; transition:color .2s; }
+  .foot-links a:hover { color:var(--gold); }
+
+  @keyframes fu { to { opacity:1; transform:translateY(0); } }
+  @keyframes fi { to { opacity:1; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Sanjana Pal</a>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">MSc Management Consultancy &nbsp;·&nbsp; UCD Smurfit 2026 &nbsp;·&nbsp; Dublin</div>
+    <h1 class="hero-title">
+      Transforming<br>
+      <em>Complexity</em><br>
+      into Clarity
+    </h1>
+    <p class="hero-sub">
+      From managing payroll for 800 employees with 99.8% accuracy to cutting document retrieval times by 40%, to driving a 60% surge in campaign engagement — I sit at the intersection of operations, strategy, and people.<br><br>
+      This portfolio traces that journey — from India to Dublin — across every role and challenge that shaped how I think and how I execute.
+    </p>
+    <p class="hero-tagline">Precise &nbsp;·&nbsp; Purposeful &nbsp;·&nbsp; Built to Last</p>
+    <div class="hero-ctas">
+      <a href="https://5ce692ec-f1fc-477c-a6aa-620d491210d5.filesusr.com/ugd/92670c_56105333a7454e9eacfb0aefabb36991.pdf" class="btn-p" target="_blank">Download CV</a>
+      <a href="#project" class="btn-g">View My Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-mono">SP</div>
+    <div class="hero-loc">Aspiring Management Consultant</div>
+    <div class="hero-badge">Dublin, Ireland</div>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-n">4<span>+</span></div>
+    <div class="stat-l">Years Professional Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">99.8<span>%</span></div>
+    <div class="stat-l">Payroll Accuracy Achieved</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">800</div>
+    <div class="stat-l">Employee Accounts Managed</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n" style="font-size:2rem;line-height:1.2;">Black Belt</div>
+    <div class="stat-l">2nd Dan Karate</div>
+  </div>
+</div>
+
+<!-- ─── EXPERTISE & IMPACT ─── -->
+<section class="expertise" id="expertise">
+  <div class="sh">
+    <div>
+      <div class="sh-label">What I Bring</div>
+      <div class="sh-title">Expertise <em>&amp; Impact</em></div>
+    </div>
+    <div class="sh-meta">03 disciplines</div>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="ec-num">01</div>
+      <h3 class="ec-title">Payroll Operations</h3>
+      <p class="ec-body">Directed end-to-end US payroll operations for 500–800 employees across multiple accounts, achieving 99.8% accuracy and SLA compliance under pressure.</p>
+      <div class="ec-rule">Paychex · Senior Payroll Analyst</div>
+    </div>
+    <div class="exp-card">
+      <div class="ec-num">02</div>
+      <h3 class="ec-title">Strategic Consultancy</h3>
+      <p class="ec-body">Sharpening a consulting toolkit at UCD Smurfit — focused on competitive analysis, market positioning, and delivering data-backed recommendations to real clients.</p>
+      <div class="ec-rule">UCD Smurfit · MSc Management Consultancy</div>
+    </div>
+    <div class="exp-card">
+      <div class="ec-num">03</div>
+      <h3 class="ec-title">Analytics &amp; Growth</h3>
+      <p class="ec-body">Drove a 60% engagement surge and 30% ROI improvement through data-led marketing strategy — turning numbers into decisions that move businesses forward.</p>
+      <div class="ec-rule">CraveDigi Advisors · Digital Marketing</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROJECT ─── -->
+<section class="project" id="project">
+  <div class="sh lt">
+    <div>
+      <div class="sh-label">Live Client Work</div>
+      <div class="sh-title dk">Featured <em>Project</em></div>
+    </div>
+    <div class="sh-meta dk">UCD Smurfit · 2026</div>
+  </div>
+  <div class="proj-inner">
+    <!-- Left: overview -->
+    <div>
+      <div class="proj-tag">Competitive Strategy &amp; Market Positioning</div>
+      <h2 class="proj-title">RSM Ireland</h2>
+      <div class="proj-overview">
+        <p>As part of a five-member student consulting team engaged through UCD Smurfit's Diagnostic Techniques in Consulting module, I worked directly with RSM Ireland — one of Ireland's top ten accounting and advisory firms and a member of RSM International, the 6th largest assurance, tax and consulting network globally.</p>
+        <p>The engagement was structured as a live client project, with RSM Ireland as the sponsoring organisation. Our team was tasked with delivering a comprehensive competitive analysis and go-to-market strategy review to help RSM Ireland strengthen its brand positioning in the Irish professional services market.</p>
+      </div>
+      <blockquote class="proj-quote">
+        "This project sharpened my ability to translate market intelligence into actionable consulting recommendations under real client conditions — bridging structured analysis with practical, people-first strategy."
+      </blockquote>
+      <div class="proj-imgs">
+        <div class="proj-img-ph">Project Photo 1</div>
+        <div class="proj-img-ph">Project Photo 2</div>
+      </div>
+    </div>
+    <!-- Right: deliverables -->
+    <div>
+      <div class="deliv-label">What We Did</div>
+      <ul class="deliverables">
+        <li class="deliv">
+          <div class="deliv-num">01</div>
+          <div>
+            <div class="deliv-t">Competitor Benchmarking</div>
+            <div class="deliv-b">Evaluated RSM Ireland against Grant Thornton, BDO, Mazars, and the Big Four (Deloitte, PwC, EY, KPMG) across brand visibility, service innovation, and sector specialisation.</div>
+          </div>
+        </li>
+        <li class="deliv">
+          <div class="deliv-num">02</div>
+          <div>
+            <div class="deliv-t">Brand Awareness Assessment</div>
+            <div class="deliv-b">Assessed RSM Ireland's current market recognition relative to competitors and identified perception gaps among target client segments.</div>
+          </div>
+        </li>
+        <li class="deliv">
+          <div class="deliv-num">03</div>
+          <div>
+            <div class="deliv-t">Addressable Market Analysis</div>
+            <div class="deliv-b">Mapped the professional services landscape in Ireland across audit, tax, and consulting, and estimated realistic growth segments aligned with RSM's capabilities.</div>
+          </div>
+        </li>
+        <li class="deliv">
+          <div class="deliv-num">04</div>
+          <div>
+            <div class="deliv-t">Strategic Recommendations</div>
+            <div class="deliv-b">Developed actionable, resource-conscious recommendations to enhance RSM Ireland's share of voice, differentiation, and client engagement strategy.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="about" id="about">
+  <div class="sh">
+    <div>
+      <div class="sh-label">The Story</div>
+      <div class="sh-title">Sanjana Pal — <em>Aspiring</em><br>Management Consultant</div>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div class="about-l">
+      <div class="about-eyebrow">Background</div>
+      <div class="gold-line"></div>
+      <h2 class="about-title">Precise. Purposeful.<br><em>Built to Last.</em></h2>
+      <div class="about-body">
+        <p>This portfolio traces a journey — from India to Dublin — across every role and challenge that shaped how I think and how I execute.</p>
+        <p>With a cross-functional background spanning payroll operations, digital marketing analytics, and strategic consultancy, I bring rigour to complexity and clarity to ambiguity.</p>
+        <p>Currently completing a live consulting engagement with RSM Ireland through the UCD Smurfit MSc Management Consultancy programme — delivering competitive intelligence and market positioning strategy to a real client.</p>
+        <p>Outside the boardroom: 2nd Dan Black Belt in Karate. Discipline isn't a value — it's a practice.</p>
+        <p style="margin-top:1.5rem;font-size:.78rem;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.3);text-transform:uppercase;">Based in Dublin · Open to consulting roles</p>
+      </div>
+      <div class="tags">
+        <span class="tag">Management Consulting</span>
+        <span class="tag">Payroll Operations</span>
+        <span class="tag">Marketing Analytics</span>
+        <span class="tag">Market Strategy</span>
+        <span class="tag">UCD Smurfit</span>
+        <span class="tag">Dublin</span>
+      </div>
+    </div>
+    <div class="about-r">
+      <p class="tl-heading">Career Timeline</p>
+      <ul class="tl">
+        <li class="tl-item">
+          <div class="tl-year">2025 – 26</div>
+          <div>
+            <div class="tl-role">MSc Management Consultancy</div>
+            <div class="tl-place">UCD Michael Smurfit Graduate Business School, Dublin</div>
+          </div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-year">2023 – 25</div>
+          <div>
+            <div class="tl-role">Senior Payroll Analyst</div>
+            <div class="tl-place">Paychex</div>
+          </div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-year">2022 – 23</div>
+          <div>
+            <div class="tl-role">Digital Marketing Strategist</div>
+            <div class="tl-place">CraveDigi Advisors</div>
+          </div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-year">Earlier</div>
+          <div>
+            <div class="tl-role">Operations &amp; Analytics Roles</div>
+            <div class="tl-place">Amazon &nbsp;·&nbsp; Deluxe</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta" id="contact">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">Let's Connect</div>
+    <h2 class="cta-title">Based in Dublin —<br><em>Open to Consulting Roles</em></h2>
+    <p class="cta-sub">Get in touch to discuss opportunities, collaborations, or just a conversation about strategy.</p>
+    <div class="cta-btns">
+      <a href="mailto:" class="btn-pd">Get in Touch</a>
+      <a href="https://5ce692ec-f1fc-477c-a6aa-620d491210d5.filesusr.com/ugd/92670c_56105333a7454e9eacfb0aefabb36991.pdf" class="btn-gd" target="_blank">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Sanjana Pal &nbsp;·&nbsp; Dublin, Ireland</p>
+  <div class="foot-links">
+    <a href="#">LinkedIn</a>
+    <a href="https://5ce692ec-f1fc-477c-a6aa-620d491210d5.filesusr.com/ugd/92670c_56105333a7454e9eacfb0aefabb36991.pdf" target="_blank">CV</a>
+    <a href="mailto:">Email</a>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(
+    '.stat, .sh, .exp-card, .proj-inner, .about-l, .about-r, .cta-inner'
+  ).forEach(el => io.observe(el));
+
+  document.querySelectorAll('.stat').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.12}s`;
+  });
+</script>
+</body>
+</html>
